@@ -9,21 +9,10 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { transactionSchema, TransactionFormData } from '@/lib/validations';
 import { CATEGORIES } from '@/lib/constants';
-import { Transaction } from '@/types';
+import { Transaction, Budget } from '@/types';
 import { format } from 'date-fns';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-
-interface Budget {
-  _id: string;
-  category: string;
-  amount: number;
-  month: number;
-  year: number;
-  spent?: number;
-  remaining?: number;
-  percentage?: number;
-}
 
 interface TransactionFormProps {
   transaction?: Transaction | null;
@@ -253,7 +242,7 @@ export function TransactionForm({ transaction, onSuccess }: TransactionFormProps
                 </SelectTrigger>
                 <SelectContent>
                   {availableBudgets.map((budget) => (
-                    <SelectItem key={budget._id} value={budget._id}>
+                    <SelectItem key={budget._id} value={budget._id || ''}>
                       {budget.category} - ${budget.amount} (${budget.remaining || budget.amount} remaining)
                     </SelectItem>
                   ))}

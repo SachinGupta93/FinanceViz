@@ -83,7 +83,7 @@ export function BudgetList({ budgets, loading, month, year, onMonthChange, onYea
                 </div>
                 <div className="flex gap-2 mt-2">
                   <Button size="sm" variant="outline" onClick={() => handleEdit(budget)}>Edit</Button>
-                  <Button size="sm" variant="destructive" onClick={() => handleDelete(budget._id)}>Delete</Button>
+                  <Button size="sm" variant="destructive" onClick={() => budget._id && handleDelete(budget._id)}>Delete</Button>
                 </div>
               </div>
             </CardContent>

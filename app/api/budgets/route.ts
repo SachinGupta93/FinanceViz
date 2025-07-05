@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
 
     console.log('🔍 [BUDGETS GET] Query params:', { month, year, category });
 
-    const query = { month, year };
+    const query: any = { month, year };
     if (category) {
       query.category = category;
     }

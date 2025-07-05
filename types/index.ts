@@ -15,6 +15,9 @@ export interface Budget {
   amount: number;
   month: number;
   year: number;
+  spent?: number;
+  remaining?: number;
+  percentage?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
