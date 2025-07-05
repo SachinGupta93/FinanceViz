@@ -27,7 +27,9 @@ export default function Dashboard() {
       console.log('🏠 [Dashboard] Analytics response status:', response.status);
       
       if (!response.ok) {
-        throw new Error('Failed to fetch analytics');
+        const errorData = await response.json().catch(() => ({}));
+        console.error('🏠 [Dashboard] Server error details:', errorData);
+        throw new Error(errorData.details || 'Failed to fetch analytics');
       }
       
       const data = await response.json();

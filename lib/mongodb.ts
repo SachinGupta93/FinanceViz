@@ -35,7 +35,8 @@ clientPromise = global._mongoClientPromise;
 export async function getDb(): Promise<Db> {
   try {
     const client = await clientPromise;
-    return client.db('personal-finance');
+    const dbName = process.env.MONGODB_DB_NAME || 'personal-finance';
+    return client.db(dbName);
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error);
     throw new Error(

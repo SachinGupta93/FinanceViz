@@ -167,7 +167,11 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('❌ [ANALYTICS GET] Error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch analytics' },
+      { 
+        error: 'Failed to fetch analytics', 
+        details: error instanceof Error ? error.message : 'Unknown error',
+        stack: process.env.NODE_ENV !== 'production' && error instanceof Error ? error.stack : undefined
+      },
       { status: 500 }
     );
   }
